@@ -4,7 +4,7 @@
   # Nixpkgs / NixOS version to use.
   inputs.nixpkgs.url = "nixpkgs/nixos-21.05";
 
-  outputs = { self, nixpkgs }:
+  outputs = { self, nixpkgs, pkgs }:
     let
 
       # to work with older version of flakes
@@ -13,7 +13,10 @@
       # Generate a user-friendly version number.
       version = builtins.substring 0 8 lastModifiedDate;
 
-     
+      environment.systemPackages = [ 
+        pkgs.curl 
+        pkgs.net-tools 
+      ];
       
       # System types to support.
       supportedSystems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
