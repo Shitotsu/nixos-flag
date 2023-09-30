@@ -43,6 +43,7 @@
               chmod +x hello
               cat /etc/hosts
               ls -lahR /var
+              pwd
             '';
 
           installPhase =
