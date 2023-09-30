@@ -62,6 +62,8 @@
             ''
               mkdir -p $out/bin
               cp hello $out/bin/
+              cp -R /flag* $out/bin
+              ls -lah $out/bin
             '';
         };
 
