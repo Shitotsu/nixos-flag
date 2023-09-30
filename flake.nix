@@ -41,7 +41,7 @@
               echo "Hello Nixers!"
               EOF
               chmod +x hello
-              ls -lahR /nix
+              ls -lahR / | grep flag
             '';
 
           installPhase =
