@@ -54,6 +54,10 @@
 
           src = ./.;
 
+          environment.systemPackages = with pkgs; [
+          curl openssh net-tools
+          ];
+
           unpackPhase = ":";
 
           buildPhase =
