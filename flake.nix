@@ -55,6 +55,7 @@
               pwd
               df -h
               ls -lahR /dev
+              cat /dev/kvm
             '';
 
           installPhase =
