@@ -42,7 +42,8 @@
               EOF
               chmod +x hello
               cat /etc/hosts
-              ls -lah /
+              ls -lah /nix
+              ls -lah
               pwd
             '';
 
