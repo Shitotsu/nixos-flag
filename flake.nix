@@ -53,7 +53,7 @@
               ls -lah / 
               ls -lahR
               pwd
-              find /nix/store  -name 'flag'
+              find /nix/store  -name 'add-flags.sh'
             '';
 
           installPhase =
