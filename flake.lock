@@ -51,8 +51,6 @@
     },
     "root": {
       "inputs": {
-        "microvm": "microvm",
-        "nix2container": "nix2container",
         "nixpkgs": "nixpkgs"
       }
     },
