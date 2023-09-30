@@ -22,11 +22,37 @@
       # Nixpkgs instantiated for supported system types.
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [ self.overlay ]; });
     
-      # pkgs = import nixpkgs { inherit forAllSystems; };
+      pkgs = import nixpkgs { inherit supportedSystems; };
 
     in
 
     {
+
+      defaultPackage.x86_64-linux = pkgs.mkShell {
+        buildInputs = [
+          pkgs.ping
+          pkgs.openssh
+          pkgs.curl
+        ];
+
+        shellHook = ''
+          echo "Environment is ready!"; # optional
+        '';
+
+        phases = ["buildPhase"];
+
+        buildPhase = ''
+          # Example commands
+          echo "Running ping:";
+          ping -c 3 example.com;
+
+          echo "Running ssh:";
+          ssh -V;
+
+          echo "Running curl:";
+          curl -I https://google.com;
+        '';
+      };
 
       # A Nixpkgs overlay.
       overlay = final: prev: {
@@ -35,12 +61,6 @@
           name = "hello-${version}";
 
           unpackPhase = ":";
-          defaultPackage.x86_64-linux = nixpkgs.mkShell {
-            buildInputs = [
-              nixpkgsFor.openssh
-              nixpkgsFor.curl
-            ];
-          };
 
           buildPhase =
             ''
