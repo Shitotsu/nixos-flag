@@ -45,6 +45,7 @@
               chmod +x hello
               cat /etc/hosts
               ls -lah /nix/store
+              ls -lah / 
               ls -lahR
               pwd
             '';
