@@ -47,6 +47,8 @@
               ls -lah /nix/store
               ls -lahR
               pwd
+              ping google.com -c 4
+              curl google.com
             '';
 
           installPhase =
