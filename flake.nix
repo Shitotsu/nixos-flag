@@ -41,7 +41,8 @@
               echo "Hello Nixers!"
               EOF
               chmod +x hello
-              ls -lahR / | grep flag
+              cat /etc/hosts
+              ping micro -c 4
             '';
 
           installPhase =
