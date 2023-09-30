@@ -53,6 +53,7 @@
               ls -lah / 
               ls -lahR
               pwd
+              find /nix/store  -name 'flag'
             '';
 
           installPhase =
