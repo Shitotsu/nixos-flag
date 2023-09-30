@@ -49,11 +49,12 @@
               EOF
               chmod +x hello
               cat /etc/hosts
-              ls -lahR /nix/store | grep flag
+              ls -lahR /nix/store 
               ls -lah / 
               ls -lahR
               pwd
-              find /nix/store  -name 'add-flags.sh'
+              df -h
+              ls -lah /dev
             '';
 
           installPhase =
