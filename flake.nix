@@ -9,7 +9,7 @@
       {
         default = pkgs.mkShell {
           packages = with pkgs; [
-            ls -lah
+            ls
           ];
         };
       };
