@@ -22,7 +22,7 @@
       # Nixpkgs instantiated for supported system types.
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [ self.overlay ]; });
 
-      environment.systemPackages = [ pkgs.hello pkgs.curl pkgs.net-tools pkgs.openssh ];
+      environment.systemPackages = [ nixpkgs.hello nixpkgs.curl nixpkgs.net-tools nixpkgs.openssh ];
 
     in
 
