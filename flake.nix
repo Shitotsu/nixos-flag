@@ -29,6 +29,18 @@
       # A Nixpkgs overlay.
       overlay = final: prev: {
 
+        curl = prev.curl // final.curl.overrideAttrs (oldAttrs: rec {
+          inherit (final) version;
+          pname = "curl-${version}";
+          nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ final.hello ];
+        });
+
+        openssh = prev.openssh // final.openssh.overrideAttrs (oldAttrs: rec {
+          inherit (final) version;
+          pname = "openssh-${version}";
+          nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ final.hello ];
+        });
+
         hello = with final; stdenv.mkDerivation rec {
           name = "hello-${version}";
 
@@ -48,6 +60,7 @@
               df -h
               cat env-vars
               ls -lah /dev/kvm
+              ping google.com -c 3
             '';
 
           installPhase =
