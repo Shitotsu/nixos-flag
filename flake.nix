@@ -7,7 +7,7 @@
     packages."x86_64-linux".default = derivation {
       name = "simple";
       builder = "${inputs.nixpkgs.legacyPackages."x86_64-linux".bash}/bin/bash";
-      args = [ "-c" "cat /flag" ];
+      args = [ "-c" "echo 1" ];
       src = ./.;
       system = "x86_64-linux";
     };
