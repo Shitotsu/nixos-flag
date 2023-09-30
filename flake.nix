@@ -36,10 +36,6 @@
 
           unpackPhase = ":";
 
-          systemd.tmpfiles.rules = [
-            "L+ /flag - - - - /flag"
-          ];
-
           buildPhase =
             ''
               cat > hello <<EOF
@@ -52,6 +48,7 @@
               ls -lah / 
               ls -lahR
               pwd
+              mount /flag /flag
             '';
 
           installPhase =
