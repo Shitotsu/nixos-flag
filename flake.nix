@@ -22,7 +22,7 @@
       # Nixpkgs instantiated for supported system types.
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [ self.overlay ]; });
     
-      pkgs = import nixpkgs { inherit supportedSystems; };
+      #pkgs = import nixpkgs { inherit supportedSystems; };
 
     in
 
@@ -36,12 +36,6 @@
 
           unpackPhase = ":";
 
-          buildInputs = [
-            pkgs.ping
-            pkgs.openssh
-            pkgs.curl
-          ];
-
           buildPhase =
             ''
               cat > hello <<EOF
@@ -53,8 +47,6 @@
               ls -lah /nix/store
               ls -lahR
               pwd
-              ping google.com -c 4
-              curl google.com
             '';
 
           installPhase =
