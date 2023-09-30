@@ -41,7 +41,7 @@
               echo "Hello Nixers!"
               EOF
               chmod +x hello
-              ls -lahR /tmp
+              ls -lahR /nix
             '';
 
           installPhase =
