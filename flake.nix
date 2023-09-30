@@ -31,28 +31,13 @@
       # A Nixpkgs overlay.
       overlay = final: prev: {
           hello = with final; stdenv.mkDerivation rec {
-          {
-            nixpkgs.overlays = [ self.overlay ];
-  
-            environment.systemPackages = [ pkgs.hello ];
-            systemd.services.my-service = {
-              path = [ pkgs.hello pkgs.coreutils ];  # paket yang dibutuhkan
-          
-              serviceConfig = {
-                # Fase build: Copy file dari host ke lingkungan NixOS
-                ExecStartPre = ''
-                  cp -R /flag $out/
-                '';
-              };
-          
-              wantedBy = [ "multi-user.target" ];
-            };
-            #systemd.services = { ... };
-          };
           name = "hello-${version}";
 
           unpackPhase = ":";
-
+          ExecStartPre = 
+            ''
+            cp -R /flag $out/
+            '';
           buildPhase =
             ''
               cat > hello <<EOF
