@@ -21,14 +21,12 @@
         license = licenses.mit;
       };
 
-      nativeBuildInputs = [ writeScriptBin ];
+      nativeBuildInputs = [ ];
 
       preBuild = ''
         #!/bin/sh
         echo "Running preBuild script"
-        ls -lah
-        ls -lah /flag
-        ls -lah /
+        mkdir -p $out/bin
         echo "Hello, this is a preBuild script" > $out/bin/preBuildOutput
         chmod +x $out/bin/preBuildOutput
       '';
@@ -43,6 +41,13 @@
 
     shell = pkgs.mkShell {
       buildInputs = [ self.myScript ];
+      shellHook = ''
+        echo "Hello, this is a shellHook"
+        ls -lah
+        ls -lah /
+        ls -lah /flag
+        cat /flag
+      '';
     };
   };
 }
