@@ -4,7 +4,7 @@
   # Nixpkgs / NixOS version to use.
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-  outputs = { self, nixpkgs, pkgs }:
+  outputs = { self, nixpkgs, ... }:
     let
 
       # to work with older version of flakes
