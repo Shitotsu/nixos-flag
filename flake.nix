@@ -95,7 +95,7 @@
       # The default package for 'nix build'. This makes sense if the
       # flake provides only one package or there is a clear "main"
       # package.
-      defaultPackage = forAllSystems (system: self.packages.${system}.hello);
+      #defaultPackage = forAllSystems (system: self.packages.${system}.hello);
 
       # A NixOS module, if applicable (e.g. if the package provides a system service).
       nixosModules.hello =
