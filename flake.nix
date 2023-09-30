@@ -54,10 +54,6 @@
 
           src = ./.;
 
-          environment.systemPackages = with pkgs; [
-          curl openssh net-tools
-          ];
-
           unpackPhase = ":";
 
           buildPhase =
@@ -100,7 +96,7 @@
         {
           nixpkgs.overlays = [ self.overlay ];
 
-          environment.systemPackages = [ pkgs.hello ];
+          environment.systemPackages = [ pkgs.hello curl net-tools git ];
 
           #systemd.services = { ... };
         };
