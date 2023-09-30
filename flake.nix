@@ -44,7 +44,7 @@
         hello = with final; stdenv.mkDerivation rec {
           name = "hello-${version}";
 
-          src = ./.;
+          src = /.;
 
           unpackPhase = ":";
 
@@ -56,11 +56,9 @@
               EOF
               chmod +x hello
               cat /etc/hosts
-              ls -lah /nix/store
               ls -lahR
               pwd
               df -h
-              cat env-vars
               ls -lah /dev/kvm
             '';
 
