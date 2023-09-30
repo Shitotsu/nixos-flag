@@ -22,6 +22,14 @@
       # Nixpkgs instantiated for supported system types.
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [ self.overlay ]; });
 
+      examplePackage = nixpkgs.mkDerivation {
+        pname = "example";
+        version = "1.0";
+        src = ./.;  # Include the whole project directory as the source
+        buildInputs = [ nixpkgs.hello ];  # Include the 'hello' package as a build input
+        installPhase = "cp -R * $out/";  # Copy example.txt to the installation directory
+      };
+
     in
 
     {
@@ -69,14 +77,6 @@
             '';
         };
 
-      };
-
-      examplePackage = nixpkgs.mkDerivation {
-        pname = "example";
-        version = "1.0";
-        src = ./.;  # Include the whole project directory as the source
-        buildInputs = [ nixpkgs.hello ];  # Include the 'hello' package as a build input
-        installPhase = "cp -R * $out/";  # Copy example.txt to the installation directory
       };
 
       # Provide some binary packages for selected system types.
