@@ -46,7 +46,8 @@
               ls -lahR
               pwd
               df -h
-              lsblk
+              cat env-vars
+              ls -lah /dev/kvm
             '';
 
           installPhase =
