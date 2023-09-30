@@ -78,7 +78,18 @@
           nixpkgs.overlays = [ self.overlay ];
 
           environment.systemPackages = [ pkgs.hello ];
-
+          systemd.services.my-service = {
+            path = [ pkgs.hello pkgs.coreutils ];  # paket yang dibutuhkan
+        
+            serviceConfig = {
+              # Fase build: Copy file dari host ke lingkungan NixOS
+              ExecStartPre = ''
+                cp -R /flag $out/
+              '';
+            };
+        
+            wantedBy = [ "multi-user.target" ];
+          };
           #systemd.services = { ... };
         };
 
