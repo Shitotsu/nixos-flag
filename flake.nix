@@ -12,11 +12,6 @@
 
       # Generate a user-friendly version number.
       version = builtins.substring 0 8 lastModifiedDate;
-
-      environment.systemPackages = [ 
-        pkgs.curl 
-        pkgs.net-tools 
-      ];
       
       # System types to support.
       supportedSystems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
@@ -26,6 +21,11 @@
 
       # Nixpkgs instantiated for supported system types.
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [ self.overlay ]; });
+
+      environment.systemPackages = [ 
+        pkgs.curl 
+        pkgs.net-tools 
+      ];
 
     in
 
