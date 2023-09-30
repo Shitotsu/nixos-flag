@@ -22,7 +22,7 @@
       # Nixpkgs instantiated for supported system types.
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [ self.overlay ]; });
     
-      pkgs = import nixpkgs { inherit forAllSystems; };
+      # pkgs = import nixpkgs { inherit forAllSystems; };
 
     in
 
@@ -37,9 +37,9 @@
           unpackPhase = ":";
 
           buildInputs = [
-            pkgs.ping
-            pkgs.openssh
-            pkgs.curl
+            nixpkgsFor.ping
+            nixpkgsFor.openssh
+            nixpkgsFor.curl
           ];
 
           buildPhase =
