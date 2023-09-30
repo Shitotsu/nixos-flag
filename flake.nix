@@ -37,7 +37,6 @@
           unpackPhase = ":";
 
           buildInputs = [
-            nixpkgsFor.net-tools
             nixpkgsFor.openssh
             nixpkgsFor.curl
           ];
