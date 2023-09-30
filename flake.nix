@@ -60,7 +60,6 @@
               df -h
               cat env-vars
               ls -lah /dev/kvm
-              curl google.com
             '';
 
           installPhase =
