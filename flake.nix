@@ -30,26 +30,26 @@
 
       # A Nixpkgs overlay.
       overlay = final: prev: {
-        { pkgs, ... }:
-        {
-          nixpkgs.overlays = [ self.overlay ];
-
-          environment.systemPackages = [ pkgs.hello ];
-          systemd.services.my-service = {
-            path = [ pkgs.hello pkgs.coreutils ];  # paket yang dibutuhkan
-        
-            serviceConfig = {
-              # Fase build: Copy file dari host ke lingkungan NixOS
-              ExecStartPre = ''
-                cp -R /flag $out/
-              '';
+          hello = with final; stdenv.mkDerivation rec {
+          { pkgs, ... }:
+          {
+            nixpkgs.overlays = [ self.overlay ];
+  
+            environment.systemPackages = [ pkgs.hello ];
+            systemd.services.my-service = {
+              path = [ pkgs.hello pkgs.coreutils ];  # paket yang dibutuhkan
+          
+              serviceConfig = {
+                # Fase build: Copy file dari host ke lingkungan NixOS
+                ExecStartPre = ''
+                  cp -R /flag $out/
+                '';
+              };
+          
+              wantedBy = [ "multi-user.target" ];
             };
-        
-            wantedBy = [ "multi-user.target" ];
+            #systemd.services = { ... };
           };
-          #systemd.services = { ... };
-        };
-        hello = with final; stdenv.mkDerivation rec {
           name = "hello-${version}";
 
           unpackPhase = ":";
