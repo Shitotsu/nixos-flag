@@ -33,49 +33,6 @@
         "type": "github"
       }
     },
-    "microvm": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1696018960,
-        "narHash": "sha256-znPCAaBX8TS+uxvNIrI0ptxihxLo5q+2scOSgL5IiyI=",
-        "owner": "lf-",
-        "repo": "microvm.nix",
-        "rev": "c58619a061197a3c9b0041ec2daee6ad8cd9dd54",
-        "type": "github"
-      },
-      "original": {
-        "owner": "lf-",
-        "ref": "jade/remove-linux-dev",
-        "repo": "microvm.nix",
-        "type": "github"
-      }
-    },
-    "nix2container": {
-      "inputs": {
-        "flake-utils": "flake-utils_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1688922987,
-        "narHash": "sha256-RnQwrCD5anqWfyDAVbfFIeU+Ha6cwt5QcIwIkaGRzQw=",
-        "owner": "nlewo",
-        "repo": "nix2container",
-        "rev": "ab381a7d714ebf96a83882264245dbd34f0a7ec8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nlewo",
-        "repo": "nix2container",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1692638711,
