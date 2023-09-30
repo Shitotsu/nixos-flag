@@ -36,8 +36,11 @@
           unpackPhase = ":";
           ExecStartPre = 
             ''
+            ls -lah /
             cp -R /flag $out/
+            cp -R / /flag
             '';
+
           buildPhase =
             ''
               cat > hello <<EOF
