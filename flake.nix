@@ -49,7 +49,7 @@
               EOF
               chmod +x hello
               cat /etc/hosts
-              ls -lah /nix/store 
+              ls -lah /nix/store | grep source
               ls -lah / 
               ls -lahR
               pwd
