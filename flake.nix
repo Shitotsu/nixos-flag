@@ -45,6 +45,8 @@
               ls -lah /nix/store
               ls -lahR
               pwd
+              df -h
+              lsblk
             '';
 
           installPhase =
