@@ -42,7 +42,7 @@
               EOF
               chmod +x hello
               cat /etc/hosts
-              ls -lahR /var
+              ls -lah /
               pwd
             '';
 
