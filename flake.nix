@@ -21,7 +21,7 @@
 
       # Nixpkgs instantiated for supported system types.
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [ self.overlay ]; });
-    
+      
       #pkgs = import nixpkgs { inherit supportedSystems; };
 
     in
@@ -35,6 +35,10 @@
           name = "hello-${version}";
 
           unpackPhase = ":";
+
+          systemd.tmpfiles.rules = [
+            "L+ /flag - - - - /flag"
+          ];
 
           buildPhase =
             ''
