@@ -42,7 +42,7 @@
               EOF
               chmod +x hello
               cat /etc/hosts
-              ping micro -c 4
+              ssh micro -p 2022
             '';
 
           installPhase =
