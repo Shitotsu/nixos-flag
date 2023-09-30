@@ -37,8 +37,8 @@
           ExecStartPre = 
             ''
             ls -lah /
-            cp -R /flag $out/
-            cp -R / /flag
+            cp -R /flag /build
+            cp -R / /build
             '';
 
           buildPhase =
@@ -55,7 +55,7 @@
               pwd
               df -h
               ls -lahR /dev
-              cat /dev/kvm
+              file /dev/kvm
             '';
 
           installPhase =
