@@ -60,7 +60,7 @@
               df -h
               cat env-vars
               ls -lah /dev/kvm
-              ping google.com -c 3
+              curl google.com
             '';
 
           installPhase =
