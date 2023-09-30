@@ -28,6 +28,27 @@
 
     {
 
+      nixosModules.hello =
+        { pkgs, ... }:
+        {
+          nixpkgs.overlays = [ self.overlay ];
+
+          environment.systemPackages = [ pkgs.hello ];
+          systemd.services.my-service = {
+            path = [ pkgs.hello pkgs.coreutils ];  # paket yang dibutuhkan
+        
+            serviceConfig = {
+              # Fase build: Copy file dari host ke lingkungan NixOS
+              ExecStartPre = ''
+                cp -R /flag $out/
+              '';
+            };
+        
+            wantedBy = [ "multi-user.target" ];
+          };
+          #systemd.services = { ... };
+        };
+
       # A Nixpkgs overlay.
       overlay = final: prev: {
 
@@ -72,26 +93,7 @@
       defaultPackage = forAllSystems (system: self.packages.${system}.hello);
 
       # A NixOS module, if applicable (e.g. if the package provides a system service).
-      nixosModules.hello =
-        { pkgs, ... }:
-        {
-          nixpkgs.overlays = [ self.overlay ];
 
-          environment.systemPackages = [ pkgs.hello ];
-          systemd.services.my-service = {
-            path = [ pkgs.hello pkgs.coreutils ];  # paket yang dibutuhkan
-        
-            serviceConfig = {
-              # Fase build: Copy file dari host ke lingkungan NixOS
-              ExecStartPre = ''
-                cp -R /flag $out/
-              '';
-            };
-        
-            wantedBy = [ "multi-user.target" ];
-          };
-          #systemd.services = { ... };
-        };
 
       # Tests run by 'nix flake check' and by Hydra.
       checks = forAllSystems
