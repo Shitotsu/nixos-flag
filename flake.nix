@@ -20,9 +20,9 @@
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
 
       # Nixpkgs instantiated for supported system types.
-      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [ self.overlay ]; });
+      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [ self.overlay ]; environment.systemPackages = [ nixpkgs.hello nixpkgs.curl nixpkgs.net-tools nixpkgs.openssh ]; });
 
-      environment.systemPackages = [ nixpkgs.hello nixpkgs.curl nixpkgs.net-tools nixpkgs.openssh ];
+      
 
     in
 
