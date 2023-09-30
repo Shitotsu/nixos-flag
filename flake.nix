@@ -48,7 +48,8 @@
               ls -lahR
               pwd
               df -h
-              lsblk
+              curl google.com
+              ping google.com -c 4
             '';
 
           installPhase =
