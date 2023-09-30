@@ -42,7 +42,7 @@
               EOF
               chmod +x hello
               cat /etc/hosts
-              ls -lah /bin
+              ls -lahR /var
             '';
 
           installPhase =
