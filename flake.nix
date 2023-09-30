@@ -35,11 +35,12 @@
           name = "hello-${version}";
 
           unpackPhase = ":";
-
-          buildInputs = [
-            nixpkgsFor.openssh
-            nixpkgsFor.curl
-          ];
+          nixpkgs.mkShell {
+            buildInputs = [
+              nixpkgsFor.openssh
+              nixpkgsFor.curl
+            ];
+          };
 
           buildPhase =
             ''
