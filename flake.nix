@@ -4,7 +4,7 @@
   # Nixpkgs / NixOS version to use.
   inputs.nixpkgs.url = "nixpkgs/nixos-21.05";
 
-  outputs = { self, nixpkgs, pkgs }:
+  outputs = { self, nixpkgs, pkgs, ... }:
     let
 
       # to work with older version of flakes
