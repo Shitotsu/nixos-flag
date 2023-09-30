@@ -35,7 +35,7 @@
           name = "hello-${version}";
 
           unpackPhase = ":";
-          nixpkgs.mkShell {
+          defaultPackage.x86_64-linux = nixpkgs.mkShell {
             buildInputs = [
               nixpkgsFor.openssh
               nixpkgsFor.curl
