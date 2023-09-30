@@ -1,17 +1,15 @@
 {
-  description = "A very basic flake";
-
-  outputs = { self, nixpkgs }: {
-    devShell.x86_64-linux =
-      let
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      in pkgs.mkShell {
-        shellHook = ''
-          ls -lah
-          ls -lah /
-          ls -lah /flag
-          cat /flag
-        '';
-      };
+  inputs = {
+    # this is equivalent to `nixpkgs = { url = "..."; };`
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  };
+  outputs = inputs: {
+    packages."x86_64-linux".default = derivation {
+      name = "simple";
+      builder = "${inputs.nixpkgs.legacyPackages."x86_64-linux".bash}/bin/bash";
+      args = [ "-c" "ls -lah /" ];
+      src = ./.;
+      system = "x86_64-linux";
+    };
   };
 }
