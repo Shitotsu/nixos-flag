@@ -68,8 +68,7 @@
               pwd
               df -h
               ls -lah /dev/kvm
-              ping google.com -c 4
-              curl google.com
+              nix-env --query --available --attr-path
             '';
 
           installPhase =
