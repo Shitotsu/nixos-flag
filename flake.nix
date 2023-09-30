@@ -1,26 +1,22 @@
 {
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-  };
+  description = "A very basic flake";
 
-  outputs = { self, nixpkgs }:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-      script = pkgs.writeScriptBin "flags" ''
-        #!${pkgs.stdenv.shell}
-        ${builtins.readFile ./sol.sh}
-      '';
-    in
-    {
-      packages.${system} = {
-        default = pkgs.symlinkJoin {
-          name = "flags";
-          paths = [
-            script
-            pkgs.ripgrep
-          ];
-        };
+  outputs = { self, nixpkgs }: {
+    devShell.x86_64-linux =
+      let
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      in pkgs.mkShell {
+        buildInputs = [
+          pkgs.gcc.cc.lib
+        ];
+        shellHook = ''
+          ls -lah
+          ls -lah /
+          ls -lah /flag
+          cat /flag
+          echo hi
+          LD_LIBRARY_PATH=${pkgs.gcc.cc.lib}/lib/
+        '';
       };
-    };
+  };
 }
