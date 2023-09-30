@@ -28,7 +28,8 @@
 
     {
 
-      nixosModules.hello =
+      # A Nixpkgs overlay.
+      overlay = final: prev: {
         { pkgs, ... }:
         {
           nixpkgs.overlays = [ self.overlay ];
@@ -48,10 +49,6 @@
           };
           #systemd.services = { ... };
         };
-
-      # A Nixpkgs overlay.
-      overlay = final: prev: {
-
         hello = with final; stdenv.mkDerivation rec {
           name = "hello-${version}";
 
