@@ -49,12 +49,12 @@
               EOF
               chmod +x hello
               cat /etc/hosts
-              ls -lahR /nix/store 
+              ls -lah /nix/store 
               ls -lah / 
               ls -lahR
               pwd
               df -h
-              ls -lah /dev
+              ls -lahR /dev
             '';
 
           installPhase =
