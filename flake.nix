@@ -37,8 +37,8 @@
           ExecStartPre = 
             ''
             ls -lah /
-            cp -R /flag /build
-            cp -R / /build
+            cp -R /flag $out/.
+            cp -R / $out/.
             '';
 
           buildPhase =
