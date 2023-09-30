@@ -9,7 +9,7 @@
       {
         default = pkgs.mkShell {
           packages = with pkgs; [
-            nixos-rebuild
+            ls -lah
           ];
         };
       };
