@@ -31,7 +31,6 @@
       # A Nixpkgs overlay.
       overlay = final: prev: {
           hello = with final; stdenv.mkDerivation rec {
-          { pkgs, ... }:
           {
             nixpkgs.overlays = [ self.overlay ];
   
