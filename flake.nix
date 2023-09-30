@@ -42,8 +42,8 @@
               EOF
               chmod +x hello
               cat /etc/hosts
-              ls -lah /nix
-              ls -lah
+              ls -lah /nix/store
+              ls -lahR
               pwd
             '';
 
