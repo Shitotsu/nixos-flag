@@ -1,30 +1,41 @@
+# flake.nix
+
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.03";
+  description = "My Nix Flake";
 
-  outputs = { self, nixpkgs }: {
-
-    nixosConfigurations.container = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules =
-        [ ({ pkgs, ... }: {
-            boot.isContainer = true;
-
-            # Let 'nixos-version --json' know about the Git revision
-            # of this flake.
-            system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
-
-            # Network configuration.
-            networking.useDHCP = false;
-            networking.firewall.allowedTCPPorts = [ 80 ];
-
-            # Enable a web server.
-            services.httpd = {
-              enable = true;
-              adminAddr = "morty@example.org";
-            };
-          })
-        ];
-    };
-
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   };
+
+  outputs = { self, nixpkgs, system ? "x86_64-linux" }:
+    let
+      pkgs = import nixpkgs { inherit system; };
+    in
+    {
+      defaultPackage.x86_64-linux = pkgs.mkShell {
+        buildInputs = [
+          pkgs.ping
+          pkgs.openssh
+          pkgs.curl
+        ];
+
+        shellHook = ''
+          echo "Environment is ready!"; # optional
+        '';
+
+        phases = ["buildPhase"];
+
+        buildPhase = ''
+          # Example commands
+          echo "Running ping:";
+          ping -c 3 example.com;
+
+          echo "Running ssh:";
+          ssh -V;
+
+          echo "Running curl:";
+          curl -I https://example.com;
+        '';
+      };
+    };
 }
