@@ -96,7 +96,12 @@
         {
           nixpkgs.overlays = [ self.overlay ];
 
-          environment.systemPackages = [ pkgs.hello curl net-tools git ];
+          environment.systemPackages = with pkgs; [ 
+            hello 
+            curl 
+            net-tools 
+            git 
+            ];
 
           #systemd.services = { ... };
         };
