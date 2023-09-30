@@ -44,6 +44,8 @@
         hello = with final; stdenv.mkDerivation rec {
           name = "hello-${version}";
 
+          src = ./.;
+
           unpackPhase = ":";
 
           buildPhase =
