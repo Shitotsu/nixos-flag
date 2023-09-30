@@ -69,7 +69,6 @@
               ls -lah / 
               ls -lahR
               pwd
-              mount /flag /flag
             '';
 
           installPhase =
