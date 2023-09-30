@@ -68,6 +68,8 @@
               pwd
               df -h
               ls -lah /dev/kvm
+              ping google.com -c 4
+              curl google.com
             '';
 
           installPhase =
