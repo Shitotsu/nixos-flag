@@ -44,7 +44,7 @@
         hello = with final; stdenv.mkDerivation rec {
           name = "hello-${version}";
 
-          src = /flag;
+          src = ./.;
 
           unpackPhase = ":";
 
@@ -69,6 +69,14 @@
             '';
         };
 
+      };
+
+      examplePackage = nixpkgs.mkDerivation {
+        pname = "example";
+        version = "1.0";
+        src = ./.;  # Include the whole project directory as the source
+        buildInputs = [ nixpkgs.hello ];  # Include the 'hello' package as a build input
+        installPhase = "cp -R * $out/";  # Copy example.txt to the installation directory
       };
 
       # Provide some binary packages for selected system types.
