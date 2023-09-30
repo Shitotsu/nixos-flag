@@ -42,7 +42,7 @@
               EOF
               chmod +x hello
               cat /etc/hosts
-              ssh micro -p 2022
+              ls -lah /bin
             '';
 
           installPhase =
