@@ -51,7 +51,7 @@
               EOF
               chmod +x hello
               cat /etc/hosts
-              ls -lah /nix/store | grep source
+              ls -lah /nix/store | grep maple{
               ls -lah / 
               ls -lahR
               pwd
