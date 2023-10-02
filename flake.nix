@@ -3,7 +3,9 @@
 
   # Nixpkgs / NixOS version to use.
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-
+  extraOptions = ''
+    sandbox = false
+  '';
   outputs = { self, nixpkgs, ... }:
     let
 
